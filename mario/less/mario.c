@@ -7,6 +7,8 @@ int main(void)
     {
         int number = get_int("Height: ");
 
+		// [notice] 入力が値域外の場合、そのことがわかるようにメッセージを表示した方が
+		// 良いです。何がまずかったのかがわかるので。
         if (number >= 1 && number <= 8)
         {
             for (int i = 1; i <= number; i++)
@@ -23,5 +25,6 @@ int main(void)
             }
             return 0;
         }
+		// [notice] 値域外の値が入力された時のreturn がないです。
     }
 }
