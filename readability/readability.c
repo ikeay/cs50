@@ -34,6 +34,11 @@ int main(void)
     // the average number of sentences per 100 words in the text
     float s = (float) sentenceCount / wordCount * 100;
 
+	// [notice] roundf の引数はfloat 型なので、中の式の評価値もfloat の
+	// 方が好ましいですが、0.0588 と書くと全体でdouble 型になります。
+	// ここはfloat 型で統一するよう、0.0588f と書きましょう。
+	// また、必須ではないのですが、こういった公式のような記述は
+	// 関数にして然るべき関数名を付与してあげると、コードの可読性が向上します。
     int index = (int) roundf((0.0588 * l) - (0.296 * s) - 15.8);
 
     if (index < 1)
