@@ -6,6 +6,11 @@ int main(void)
 {
     while (true)
     {
+		// [notice] ここはコメントだけ。
+		// お金を扱う時は、扱える値の範囲に注意です。
+		// 実運用の時は比較的容易にオーバーフローを起こします。
+		// 一部のSQL の中にはmoney型とかいうものもあります。
+		// (固定小数で64bit 表現)
         float dollars = get_float("Change owed: ");
         if (dollars > 0)
         {
