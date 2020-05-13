@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <math.h>
 
+int ColemanLiauIndex(int letter_count, int word_count, int sentence_count);
+
 int main(void)
 {
     char *text = get_string("Text: ");
@@ -28,18 +30,7 @@ int main(void)
     // adds count of a last word
     wordCount++;
 
-    // the average number of letters per 100 words in the text
-    float l = (float) letterCount / wordCount * 100;
-
-    // the average number of sentences per 100 words in the text
-    float s = (float) sentenceCount / wordCount * 100;
-
-	// [notice] roundf の引数はfloat 型なので、中の式の評価値もfloat の
-	// 方が好ましいですが、0.0588 と書くと全体でdouble 型になります。
-	// ここはfloat 型で統一するよう、0.0588f と書きましょう。
-	// また、必須ではないのですが、こういった公式のような記述は
-	// 関数にして然るべき関数名を付与してあげると、コードの可読性が向上します。
-    int index = (int) roundf((0.0588 * l) - (0.296 * s) - 15.8);
+    int index = ColemanLiauIndex(letterCount, wordCount, sentenceCount); 
 
     if (index < 1)
     {
@@ -54,3 +45,16 @@ int main(void)
         printf("Grade %i\n", index);
     }
 }
+
+int ColemanLiauIndex(int letter_count, int word_count, int sentence_count)
+{
+    // the average number of letters per 100 words in the text
+	float l = (float) letter_count / (float)word_count * 100.0f;
+	
+	// the average number of sentences per 100 words in the text
+	float s = (float) sentence_count / (float)word_count * 100.0f;
+		 
+	int index = (int) roundf((0.0588f * l) - (0.296f * s) - 15.8f);
+	return index;
+}
+
