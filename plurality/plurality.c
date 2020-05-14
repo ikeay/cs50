@@ -21,7 +21,11 @@ int main(int argc, char *argv[])
 {
 	if(argc - 1 > MAX) {
 		fprintf(stderr, "too many parameters. number of parameters must be less than %d\n", MAX); 
-		return -1; 
+		return 1; 
+	}
+	if(argc <= 1) {
+		fprintf(stderr, "equals to or more than 1 parameter(s) are required.");
+		return 1; 
 	}
 
 	candidate_count = argc - 1;
@@ -35,7 +39,7 @@ int main(int argc, char *argv[])
     int voters_num = get_int("Number of voters: ");
 	if(voters_num <= 0) {
 		fprintf(stderr, "invalid number of voters: %d\n", voters_num); 
-		return -2; 
+		return 1; 
 	}
     for (int i = 0; i < voters_num; i++)
     {
@@ -47,6 +51,7 @@ int main(int argc, char *argv[])
 
     }
     print_winner();
+	return 0; 
 }
 
 bool vote(char *name)
