@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        printf("Usage: ./caesar key(zero or positive integer)\n");
+        printf("Usage: ./caesar key\n");
         return 1;
     }
 
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	ret = my_atoi(argv[1], &key); 
     if (ret == -1) 
     {
-        printf("Usage: ./caesar key(zero or positive integer)\n");
+        printf("Usage: ./caesar key\n");
         return 1;
     }
 
