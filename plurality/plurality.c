@@ -19,6 +19,8 @@ int candidate_count;
 
 int main(int argc, char *argv[])
 {
+	// [notice] argc - 1 > MAX の時にバッファオーバーランを起こすので、
+	// エラーチェックが必要
     for (int i = 0; i < argc - 1; i++)
     {
         candidates[i].name = argv[i + 1];
@@ -59,6 +61,8 @@ void print_winner(void)
     int count = 0;
     int max = 0;
 
+	// [notice] .name は文字型のポインタ変数（アドレス値）なので、
+	// '\0' と比較してはいけません。NULL(= (void*(0))) と比較しましょう。
     for (int i = 0; candidates[i].name != '\0'; i++)
     {
         if (candidates[i].votes > max)
@@ -78,6 +82,7 @@ void print_winner(void)
         }
     }
 
+	// [noitice] ループをもう少しシンプルにできると思います。
     for (int i = 0; i < candidate_count && winner_names[i] != NULL; i++)
     {
         printf("%s\n", winner_names[i]);
