@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int ColemanLiauIndex(int letter_count, int word_count, int sentence_count);
+int coleman_liau_index(int letter_count, int word_count, int sentence_count);
 
 int main(void)
 {
@@ -30,7 +30,7 @@ int main(void)
     // adds count of a last word
     wordCount++;
 
-    int index = ColemanLiauIndex(letterCount, wordCount, sentenceCount); 
+    int index = coleman_liau_index(letterCount, wordCount, sentenceCount); 
 
     if (index < 1)
     {
@@ -46,7 +46,7 @@ int main(void)
     }
 }
 
-int ColemanLiauIndex(int letter_count, int word_count, int sentence_count)
+int coleman_liau_index(int letter_count, int word_count, int sentence_count)
 {
     // the average number of letters per 100 words in the text
 	float l = (float) letter_count / (float)word_count * 100.0f;
