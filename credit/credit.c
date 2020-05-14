@@ -24,8 +24,8 @@ int main(void)
 
         if (count < 13 || count > 16)
         {
-            printf("INVALID: out of range.\n");
-            return -1;
+            printf("INVALID\n");
+            return 0;
         }
 
         int sum = 0;
@@ -73,7 +73,7 @@ int main(void)
                 return 0;
             }
         }
-        printf("INVALID: bad check sum.\n");
-        return -2;
+        printf("INVALID\n");
+        return 0;
     }
 }
