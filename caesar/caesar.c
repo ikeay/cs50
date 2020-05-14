@@ -13,9 +13,8 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-	int key; 
-	int ret = sscanf(argv[1], "%d", &key);
-    if (ret != 1) // ret は実際に代入された変数の個数。
+	int key = my_atoi(argv[1]); 
+    if (key == -1) // ret は実際に代入された変数の個数。
     {
         printf("Usage: ./caesar key\n");
         return 1;
@@ -42,3 +41,14 @@ int main(int argc, char *argv[])
     return 0;
 }
 
+int my_atoi(char *str)	
+{	
+	for (int i = 0; str[i] != '\0'; i++)	
+	{	
+		if (atoi(&str[i]) == 0 && strcmp(&str[i], "0") != 0)	
+		{	
+			return -1;	
+		}	
+	}	
+	return atoi(str);	
+} 
