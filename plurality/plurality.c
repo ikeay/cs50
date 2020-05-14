@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 		return 1; 
 	}
 	if(argc <= 1) {
-		fprintf(stderr, "equals to or more than 1 parameter(s) are required.");
+		fprintf(stderr, "equals to or more than 1 parameter(s) are required.\n");
 		return 1; 
 	}
 
