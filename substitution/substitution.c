@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 	// 引数文字列(keys)の正当性チェック
 	if(strlen(keys) != 26) {
 		printf("Key must contain 26 characters.\n");
-		return -1; 
+		return 1; 
 	}
 
 	for(int i=0;i<26;i++) {
