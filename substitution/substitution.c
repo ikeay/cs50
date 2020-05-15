@@ -59,10 +59,12 @@ int main(int argc, char *argv[])
 	}
 
 	char *text = get_string("plaintext: ");
+	printf("ciphertext:");
 	// 実際に変換処理を行う。
 	for(int i = 0;text[i] != '\0';i++) {
 		int index = (int)text[i]; // 1バイトデータなので、index は0～255 になる。
 		printf("%c", convert_map[index]); 
 	}
+	printf("\n");
     return 0;
 }
