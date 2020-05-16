@@ -2,7 +2,14 @@
 
 Harvard大学のMOOC講座、 [CS50 2020](https://cs50.harvard.edu/x/2020/) の課題
 
+## Week 0
+使用言語: Scratch
+- [race](scratch/Race.sb3)
+  - Scratch で好きにゲームを作る課題
+  - 簡単なレースゲームを制作した
+
 ## Week 1
+使用言語: C言語
 - [Hello](hello/hello.c)
   - 「Ayaka」と名前を入力すると、「Hello, Ayaka」と出力するプログラム
   - [問題文](https://cs50.harvard.edu/x/2020/psets/1/hello/)
@@ -19,6 +26,7 @@ Harvard大学のMOOC講座、 [CS50 2020](https://cs50.harvard.edu/x/2020/) の
   - [問題文](https://cs50.harvard.edu/x/2020/psets/1/credit/)
 
 ## Week 2
+使用言語: C言語
 - [Readability](readability/readability.c)
   - Coleman-Liau indexという式を用いて、100ワードあたりの文字数、文数から文章のリーダビリティを測るプログラム
   - [問題文](https://cs50.harvard.edu/x/2020/psets/2/readability/)
@@ -30,6 +38,7 @@ Harvard大学のMOOC講座、 [CS50 2020](https://cs50.harvard.edu/x/2020/) の
   - [問題文](https://cs50.harvard.edu/x/2020/psets/2/substitution/)
 
 ## Week 3
+使用言語: C言語
 - [Plurality](plurality/plurality.c)
   - 多数決プログラム
   - [問題文](https://cs50.harvard.edu/x/2020/psets/3/plurality/)
