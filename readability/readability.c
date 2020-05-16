@@ -30,8 +30,7 @@ int main(void)
     // adds count of a last word
     wordCount++;
 
-    int index = coleman_liau_index(letterCount, wordCount, sentenceCount); 
-
+    int index = coleman_liau_index(letterCount, wordCount, sentenceCount);
     if (index < 1)
     {
         printf("Before Grade 1\n");
@@ -49,12 +48,11 @@ int main(void)
 int coleman_liau_index(int letter_count, int word_count, int sentence_count)
 {
     // the average number of letters per 100 words in the text
-	float l = (float) letter_count / (float)word_count * 100.0f;
-	
-	// the average number of sentences per 100 words in the text
-	float s = (float) sentence_count / (float)word_count * 100.0f;
-		 
-	int index = (int) roundf((0.0588f * l) - (0.296f * s) - 15.8f);
-	return index;
-}
+    float l = (float) letter_count / (float)word_count * 100.0f;
 
+    // the average number of sentences per 100 words in the text
+    float s = (float) sentence_count / (float)word_count * 100.0f;
+
+    int index = (int) roundf((0.0588f * l) - (0.296f * s) - 15.8f);
+    return index;
+}
