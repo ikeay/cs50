@@ -22,9 +22,7 @@ int main(void)
                 printf("\n");
             }
             return 0;
-//        } else {
-//			printf("height must be 1 to 8. your input is %d\n", number);
-		}
+        }
     }
-	return 0; 
+    return 0; 
 }
