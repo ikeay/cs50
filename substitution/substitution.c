@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
     char *keys = argv[1];
 
-    // 引数文字列(keys)の正当性チェック
+    // checks the number of keys, the number is 26
     if (strlen(keys) != 26)
     {
         printf("Key must contain 26 characters.\n");
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
     for (int i = 0; i < 26; i++)
     {
-        // 大文字・小文字を区別しないので小文字に統一して判定する
+        // converts a key to lowercase
         char key = tolower(keys[i]);
         if (key < 'a' || key > 'z')
         {
@@ -42,8 +42,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    // 文字コードx -> x へのマップ。
-    // 但し、アルファベット文字の場合はkeys に合わせてマップ先を変更する。
+    // maps each char code
     char convert_map[256];
     for (int i = 0; i < 256; i++)
     {
@@ -51,13 +50,13 @@ int main(int argc, char *argv[])
         int index;
         if (c >= 'a' && c <= 'z')
         {
-            // index: keys のどこを参照するかを示す
+            // index: Alphabetical order number from 'a'
             index = (int)(c - 'a');
             convert_map[i] = tolower(keys[index]);
         }
         else if (c >= 'A' && c <= 'Z')
         {
-            // index: keys のどこを参照するかを示す
+            // index: Alphabetical order number from 'A'
             index = (int)(c - 'A');
             convert_map[i] = toupper(keys[index]);
         }
@@ -68,11 +67,12 @@ int main(int argc, char *argv[])
     }
 
     char *text = get_string("plaintext: ");
+
+    // converts plaintext to a ciphertext
     printf("ciphertext:");
-    // 実際に変換処理を行う。
     for (int i = 0; text[i] != '\0'; i++)
     {
-        int index = (int)text[i];// 1バイトデータなので、index は0～255 になる。
+        int index = (int)text[i]; // index is 0-255
         printf("%c", convert_map[index]);
     }
     printf("\n");
