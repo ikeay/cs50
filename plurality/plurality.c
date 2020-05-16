@@ -1,5 +1,4 @@
 #define MAX 9
-#define NULL ((void *)0)
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
