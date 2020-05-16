@@ -4,7 +4,7 @@ Harvard大学のMOOC講座、 [CS50 2020](https://cs50.harvard.edu/x/2020/) の
 
 ## Week 0
 使用言語: Scratch
-- [race](scratch/Race.sb3)
+- [Race](scratch/Race.sb3)
   - Scratch で好きにゲームを作る課題
   - 簡単なレースゲームを制作した
 
