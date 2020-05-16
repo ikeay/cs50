@@ -4,8 +4,6 @@
 #include <string.h>
 #include <ctype.h>
 
-int my_atoi(char *str);
-
 int main(int argc, char *argv[])
 {
     if (argc != 2)
