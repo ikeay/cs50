@@ -33,3 +33,6 @@ Harvard大学のMOOC講座、 [CS50 2020](https://cs50.harvard.edu/x/2020/) の
 - [Plurality](plurality/plurality.c)
   - 多数決プログラム
   - [問題文](https://cs50.harvard.edu/x/2020/psets/3/plurality/)
+- [Runoff](runoff/runoff.c)
+  - 決選投票プログラム
+  - [問題文](https://cs50.harvard.edu/x/2020/psets/3/runoff/)
