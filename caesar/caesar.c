@@ -46,7 +46,7 @@ int my_atoi(const char *str, int *out)
 {
     for (int i = 0; str[i] != '\0'; i++)
     {
-        // return 1 if not number
+        // returns 1 if not number
         if (str[i] < '0' || str[i] > '9')
         {
             *out = 0;
@@ -54,7 +54,7 @@ int my_atoi(const char *str, int *out)
         }
     }
 
-    // convert string to int if using only number
+    // converts string to int if using only number
     *out = atoi(str);
     return 0;
 }
