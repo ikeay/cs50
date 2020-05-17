@@ -1,5 +1,4 @@
 #define MAX 9
-#define NULL ((void *)0)
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
@@ -19,17 +18,19 @@ int candidate_count;
 
 int main(int argc, char *argv[])
 {
-	if(argc - 1 > MAX) {
-		fprintf(stderr, "too many parameters. number of parameters must be less than %d\n", MAX); 
-		return 1; 
-	}
-	if(argc <= 1) {
-		fprintf(stderr, "equals to or more than 1 parameter(s) are required.\n");
-		return 1; 
-	}
+    if (argc - 1 > MAX)
+    {
+        fprintf(stderr, "too many parameters. number of parameters must be less than %d\n", MAX);
+        return 1;
+    }
+    if (argc <= 1)
+    {
+        fprintf(stderr, "equals to or more than 1 parameter(s) are required.\n");
+        return 1;
+    }
 
-	candidate_count = argc - 1;
-		
+    candidate_count = argc - 1;
+
     for (int i = 0; i < candidate_count; i++)
     {
         candidates[i].name = argv[i + 1];
@@ -37,10 +38,11 @@ int main(int argc, char *argv[])
     }
 
     int voters_num = get_int("Number of voters: ");
-	if(voters_num <= 0) {
-		fprintf(stderr, "invalid number of voters: %d\n", voters_num); 
-		return 1; 
-	}
+    if (voters_num <= 0)
+    {
+        fprintf(stderr, "invalid number of voters: %d\n", voters_num);
+        return 1;
+    }
     for (int i = 0; i < voters_num; i++)
     {
         char *name = get_string("Vote: ");
@@ -51,7 +53,7 @@ int main(int argc, char *argv[])
 
     }
     print_winner();
-	return 0; 
+    return 0;
 }
 
 bool vote(char *name)
@@ -76,13 +78,14 @@ void print_winner(void)
         if (candidates[i].votes > max)
         {
             max = candidates[i].votes;
-		}
-	}
+        }
+    }
 
-	for (int i = 0; i < candidate_count; i++)
-	{
-		if(candidates[i].votes == max) {
-			printf("%s\n", candidates[i].name);
-		}
-	}
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i].votes == max)
+        {
+            printf("%s\n", candidates[i].name);
+        }
+    }
 }

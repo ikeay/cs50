@@ -40,7 +40,7 @@ int main(void)
                 int _mult = array[i] * 2;
                 if (_mult > 9)
                 {
-					sum += _mult - 9;
+                    sum += _mult - 9;
                 }
                 else
                 {
