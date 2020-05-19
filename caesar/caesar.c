@@ -3,18 +3,19 @@
 #include <stdio.h>
 #include <string.h>
 
-int my_atoi(char *str);
+int my_atoi(const char *str, int *out);
 
 int main(int argc, char *argv[])
 {
-    if (argc > 2 || argc <= 1)
+    if (argc != 2)
     {
         printf("Usage: ./caesar key\n");
         return 1;
     }
 
-    int key = my_atoi(argv[1]);
-    if (key == -1)
+    int key, ret;
+    ret = my_atoi(argv[1], &key);
+    if (ret == 1)
     {
         printf("Usage: ./caesar key\n");
         return 1;
@@ -41,14 +42,19 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-int my_atoi(char *str)
+int my_atoi(const char *str, int *out)
 {
     for (int i = 0; str[i] != '\0'; i++)
     {
-        if (atoi(&str[i]) == 0 && strcmp(&str[i], "0") != 0)
+        // returns 1 if not number
+        if (str[i] < '0' || str[i] > '9')
         {
-            return -1;
+            *out = 0;
+            return 1;
         }
     }
-    return atoi(str);
+
+    // converts string to int if using only number
+    *out = atoi(str);
+    return 0;
 }

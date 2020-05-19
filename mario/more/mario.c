@@ -10,31 +10,23 @@ int main(void)
         {
             for (int i = 1; i <= number; i++)
             {
-                for (int k = 0; k < 2; k++)
+                for (int j = 0; j < (number - i); j ++)
                 {
-                    if (k == 0)
-                    {
-                        for (int j = 0; j < (number - i); j ++)
-                        {
-                            printf(" ");
-                        }
-                        for (int j = 0; j < i; j ++)
-                        {
-                            printf("#");
-                        }
-                        printf("  ");
-                    }
-                    else
-                    {
-                        for (int j = 0; j < i; j ++)
-                        {
-                            printf("#");
-                        }
-                    }
+                    printf(" ");
+                }
+                for (int j = 0; j < i; j ++)
+                {
+                    printf("#");
+                }
+                printf("  ");
+                for (int j = 0; j < i; j ++)
+                {
+                    printf("#");
                 }
                 printf("\n");
             }
             return 0;
         }
     }
+    return 0; 
 }

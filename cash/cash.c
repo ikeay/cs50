@@ -6,6 +6,7 @@ int main(void)
 {
     while (true)
     {
+        // Note: pay attention to the overflow
         float dollars = get_float("Change owed: ");
         if (dollars > 0)
         {
