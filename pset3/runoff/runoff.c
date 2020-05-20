@@ -9,8 +9,7 @@
 // Candidates have name, vote count, eliminated status
 typedef struct
 {
-    // [notice] Is 'string' better than 'char *'? 
-    char *name;
+    string name;
     int votes;
     bool eliminated;
 }
@@ -27,7 +26,6 @@ int voter_count;
 int candidate_count;
 
 // Function prototypes
-// [notice] prototype declaration is not same as entity for vote function.
 bool vote(int voter, int rank, string name);
 void tabulate(void);
 bool print_winner(void);
@@ -35,10 +33,7 @@ int find_min(void);
 bool is_tie(int min);
 void eliminate(int min);
 
-// [notice] only in 'main' declaration, 'char *' is better than 'string' for argv
-// because it may make some confusion. 
-// which is better for you?
-int main(int argc, string argv[])
+int main(int argc, char** argv)
 {
     if (argc <= 1)
     {
@@ -55,7 +50,7 @@ int main(int argc, string argv[])
 
     for (int i = 0; i < candidate_count; i++)
     {
-        candidates[i].name = argv[i + 1];
+        candidates[i].name = (string)argv[i + 1];
         candidates[i].votes = 0;
         candidates[i].eliminated = false;
     }
@@ -125,11 +120,7 @@ int main(int argc, string argv[])
 }
 
 // Record preference if vote is valid
-// [notice] prototype declaration is not same as entity for vote function.
-// It is better to change 'char *' to 'string'? 
-// (Spec. say that "Every candidate has a string field for their name"
-// so it may be better to unity to string.)
-bool vote(int voter, int rank, char *name)
+bool vote(int voter, int rank, string name)
 {
     for (int i = 0; i < candidate_count; i++)
     {
