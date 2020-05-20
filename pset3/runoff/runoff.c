@@ -9,6 +9,7 @@
 // Candidates have name, vote count, eliminated status
 typedef struct
 {
+    // [notice] Is 'string' better than 'char *'? 
     char *name;
     int votes;
     bool eliminated;
