@@ -33,7 +33,7 @@ int find_min(void);
 bool is_tie(int min);
 void eliminate(int min);
 
-int main(int argc, char** argv)
+int main(int argc, string argv[])
 {
     if (argc <= 1)
     {
