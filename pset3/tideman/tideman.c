@@ -1,6 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 // Max number of candidates
 #define MAX 9
@@ -115,8 +116,14 @@ bool vote(int rank, string name, int ranks[])
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
-    // [notice]
-    // preferences array should be initialized by 0 at first. 
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = i + 1; j < candidate_count; j++)
+        {
+            preferences[i]j] = 0;
+        }
+    }
+
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = i + 1; j < candidate_count; j++)
@@ -148,37 +155,27 @@ void add_pairs(void)
     }
 }
 
+int compare_pair(const void* a, const void *b)
+{
+    const pair* pa = (const pair*)a;
+    const pair* pb = (const pair*)b;
+    int diff_a = preferences[pa->winner][pa->loser]
+            - preferences[pa->loser][pa->winner];
+    int diff_b = preferences[pb->winner][pb->loser]
+            - preferences[pb->loser][pb->winner];
+    if(diff_a > diff_b) {
+        return -1; // pa is ahead of pb
+    }
+    if(diff_a < diff_b) {
+        return 1; // pa is later than pb
+    }
+    return 0;
+}
+
 // Sort pairs in decreasing order by strength of victory
-// [notice]
-// It is bubble sort algorithm in current implementation. 
-// You can make this function simpler and faster by calling qsort function.
-// (Bubble sort is n^2 average order. 
-//  qsort(quick-sort) is nlog(n) average order.)
-// qsort function is defined as standard function for C language.
-// Please include <stdlib.h>
 void sort_pairs(void)
 {
-    while (true)
-    {
-        bool is_swapped = false;
-        for (int i = 0; i < pair_count - 1; i++)
-        {
-            int diff = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
-            int next_diff = preferences[pairs[i + 1].winner][pairs[i + 1].loser] - preferences[pairs[i + 1].loser][pairs[i + 1].winner];
-
-            if (diff < next_diff)
-            {
-                pair temp = pairs[i];
-                pairs[i] = pairs[i + 1];
-                pairs[i + 1] = temp;
-                is_swapped = true;
-            }
-        }
-        if (is_swapped == false)
-        {
-            break;
-        }
-    }
+    qsort(pairs, pair_count, sizeof(pair), compare_pair);
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
