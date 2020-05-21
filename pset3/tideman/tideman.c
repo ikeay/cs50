@@ -115,10 +115,17 @@ bool vote(int rank, string name, int ranks[])
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
+    // [notice]
+    // preferences array should be initialized by 0 at first. 
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
+            // [note]
+            // ranks[i]-th candidate is prefered than
+            // ranks[j]-th candidate 
+            // because i is always greater than j. 
+            // (remember that ranks[i]-th candidate's rank is i.)
             preferences[ranks[i]][ranks[j]]++;
         }
     }
@@ -142,6 +149,13 @@ void add_pairs(void)
 }
 
 // Sort pairs in decreasing order by strength of victory
+// [notice]
+// It is bubble sort algorithm in current implementation. 
+// You can make this function simpler and faster by calling qsort function.
+// (Bubble sort is n^2 average order. 
+//  qsort(quick-sort) is nlog(n) average order.)
+// qsort function is defined as standard function for C language.
+// Please include <stdlib.h>
 void sort_pairs(void)
 {
     while (true)
@@ -172,6 +186,8 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
+        // [note]
+        // locked array makes directed graph. 
         locked[pairs[i].winner][pairs[i].loser] = true;
         if (check_cycle(pairs[i].winner, pairs[i].loser) == true)
         {
@@ -180,6 +196,12 @@ void lock_pairs(void)
     }
 }
 
+// [note]
+// In directional graph 'locked', 
+// is there a cycle when start-node is connected to end-node?
+// (is there any route from end-node to start-node?)
+// 'locked' array makes directinal graph so that check_cycle function
+// will not make infinite loop. 
 bool check_cycle(int start, int end)
 {
     if (start == end)
@@ -209,12 +231,16 @@ void print_winner(void)
         int count = 0;
         for (int j = 0; j < candidate_count; j++)
         {
+            // [note]
+            // j is not locked in over i
             if (locked[j][i] == false)
             {
                 count++;
             }
         }
 
+        // [note]
+        // any candidates is not locked in over cahdidate i. 
         if (count == candidate_count)
         {
             printf("%s\n", candidates[i]);
