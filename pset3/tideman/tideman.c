@@ -69,6 +69,15 @@ int main(int argc, string argv[])
     pair_count = 0;
     int voter_count = get_int("Number of voters: ");
 
+    // zero clear memory for preferences.
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+            preferences[i][j] = 0;
+        }
+    }
+
     // Query for votes
     for (int i = 0; i < voter_count; i++)
     {
@@ -116,15 +125,6 @@ bool vote(int rank, string name, int ranks[])
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
-	// zero clear memory for preferences. 
-    for (int i = 0; i < candidate_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            preferences[i][j] = 0;
-        }
-    }
-
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = i + 1; j < candidate_count; j++)
