@@ -1,6 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 // Max number of candidates
 #define MAX 9
@@ -68,6 +69,15 @@ int main(int argc, string argv[])
     pair_count = 0;
     int voter_count = get_int("Number of voters: ");
 
+    // zero clear memory for preferences.
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+            preferences[i][j] = 0;
+        }
+    }
+
     // Query for votes
     for (int i = 0; i < voter_count; i++)
     {
@@ -119,6 +129,11 @@ void record_preferences(int ranks[])
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
+            // [note]
+            // ranks[i]-th candidate is prefered than
+            // ranks[j]-th candidate 
+            // because i is always greater than j. 
+            // (remember that ranks[i]-th candidate's rank is i.)
             preferences[ranks[i]][ranks[j]]++;
         }
     }
@@ -141,30 +156,27 @@ void add_pairs(void)
     }
 }
 
+int compare_pair(const void* a, const void *b)
+{
+    const pair* pa = (const pair*)a;
+    const pair* pb = (const pair*)b;
+    int diff_a = preferences[pa->winner][pa->loser]
+            - preferences[pa->loser][pa->winner];
+    int diff_b = preferences[pb->winner][pb->loser]
+            - preferences[pb->loser][pb->winner];
+    if(diff_a > diff_b) {
+        return -1; // pa is ahead of pb
+    }
+    if(diff_a < diff_b) {
+        return 1; // pa is later than pb
+    }
+    return 0;
+}
+
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
-    while (true)
-    {
-        bool is_swapped = false;
-        for (int i = 0; i < pair_count - 1; i++)
-        {
-            int diff = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
-            int next_diff = preferences[pairs[i + 1].winner][pairs[i + 1].loser] - preferences[pairs[i + 1].loser][pairs[i + 1].winner];
-
-            if (diff < next_diff)
-            {
-                pair temp = pairs[i];
-                pairs[i] = pairs[i + 1];
-                pairs[i + 1] = temp;
-                is_swapped = true;
-            }
-        }
-        if (is_swapped == false)
-        {
-            break;
-        }
-    }
+    qsort(pairs, pair_count, sizeof(pair), compare_pair);
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
@@ -172,6 +184,8 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
+        // [note]
+        // locked array makes directed graph. 
         locked[pairs[i].winner][pairs[i].loser] = true;
         if (check_cycle(pairs[i].winner, pairs[i].loser) == true)
         {
@@ -180,6 +194,12 @@ void lock_pairs(void)
     }
 }
 
+// [note]
+// In directional graph 'locked', 
+// is there a cycle when start-node is connected to end-node?
+// (is there any route from end-node to start-node?)
+// 'locked' array makes directinal graph so that check_cycle function
+// will not make infinite loop. 
 bool check_cycle(int start, int end)
 {
     if (start == end)
@@ -209,12 +229,16 @@ void print_winner(void)
         int count = 0;
         for (int j = 0; j < candidate_count; j++)
         {
+            // [note]
+            // j is not locked in over i
             if (locked[j][i] == false)
             {
                 count++;
             }
         }
 
+        // [note]
+        // any candidates is not locked in over cahdidate i. 
         if (count == candidate_count)
         {
             printf("%s\n", candidates[i]);

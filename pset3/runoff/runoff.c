@@ -9,7 +9,7 @@
 // Candidates have name, vote count, eliminated status
 typedef struct
 {
-    char *name;
+    string name;
     int votes;
     bool eliminated;
 }
@@ -50,7 +50,7 @@ int main(int argc, string argv[])
 
     for (int i = 0; i < candidate_count; i++)
     {
-        candidates[i].name = argv[i + 1];
+        candidates[i].name = (string)argv[i + 1];
         candidates[i].votes = 0;
         candidates[i].eliminated = false;
     }
@@ -120,7 +120,7 @@ int main(int argc, string argv[])
 }
 
 // Record preference if vote is valid
-bool vote(int voter, int rank, char *name)
+bool vote(int voter, int rank, string name)
 {
     for (int i = 0; i < candidate_count; i++)
     {
@@ -138,6 +138,8 @@ void tabulate(void)
 {
     for (int i = 0; i < voter_count; i++)
     {
+        // [note]
+        // vote to highest rank candidate who has not been eliminated yet. 
         for (int j = 0; j < candidate_count; j++)
         {
             if (!candidates[preferences[i][j]].eliminated)
