@@ -69,7 +69,7 @@ int main(int argc, string argv[])
     pair_count = 0;
     int voter_count = get_int("Number of voters: ");
 
-    // zero clear memory for preferences.
+    // Initialize memory with zero
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
@@ -129,11 +129,9 @@ void record_preferences(int ranks[])
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
-            // [note]
             // ranks[i]-th candidate is prefered than
-            // ranks[j]-th candidate 
-            // because i is always greater than j. 
-            // (remember that ranks[i]-th candidate's rank is i.)
+            // ranks[j]-th candidate
+            // Because i is always greater than j
             preferences[ranks[i]][ranks[j]]++;
         }
     }
@@ -156,18 +154,20 @@ void add_pairs(void)
     }
 }
 
-int compare_pair(const void* a, const void *b)
+int compare_pair(const void *a, const void *b)
 {
-    const pair* pa = (const pair*)a;
-    const pair* pb = (const pair*)b;
+    const pair *pa = (const pair *)a;
+    const pair *pb = (const pair *)b;
     int diff_a = preferences[pa->winner][pa->loser]
-            - preferences[pa->loser][pa->winner];
+                 - preferences[pa->loser][pa->winner];
     int diff_b = preferences[pb->winner][pb->loser]
-            - preferences[pb->loser][pb->winner];
-    if(diff_a > diff_b) {
+                 - preferences[pb->loser][pb->winner];
+    if (diff_a > diff_b)
+    {
         return -1; // pa is ahead of pb
     }
-    if(diff_a < diff_b) {
+    if (diff_a < diff_b)
+    {
         return 1; // pa is later than pb
     }
     return 0;
@@ -184,8 +184,7 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
-        // [note]
-        // locked array makes directed graph. 
+        // 'locked' makes directed graph
         locked[pairs[i].winner][pairs[i].loser] = true;
         if (check_cycle(pairs[i].winner, pairs[i].loser) == true)
         {
@@ -194,12 +193,8 @@ void lock_pairs(void)
     }
 }
 
-// [note]
-// In directional graph 'locked', 
-// is there a cycle when start-node is connected to end-node?
-// (is there any route from end-node to start-node?)
-// 'locked' array makes directinal graph so that check_cycle function
-// will not make infinite loop. 
+// Check whether or not the cycle in the directional graph
+// like start-node is connected to end-node
 bool check_cycle(int start, int end)
 {
     if (start == end)
@@ -229,16 +224,12 @@ void print_winner(void)
         int count = 0;
         for (int j = 0; j < candidate_count; j++)
         {
-            // [note]
-            // j is not locked in over i
             if (locked[j][i] == false)
             {
                 count++;
             }
         }
 
-        // [note]
-        // any candidates is not locked in over cahdidate i. 
         if (count == candidate_count)
         {
             printf("%s\n", candidates[i]);
