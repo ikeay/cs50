@@ -53,7 +53,9 @@ Harvard大学のMOOC講座、 [CS50 2020](https://cs50.harvard.edu/x/2020/) の
 使用言語: C言語
 - [Filter less](pset4/filter/less/helpers.c)
   - 画像用フィルター（グレースケール、セピア、反転、ブラー）
+  - `helpers.c` のみ実装 
   - [問題文](https://cs50.harvard.edu/x/2020/psets/4/filter/less/)
 - [Filter more](pset4/filter/more/helpers.c)
   - 画像用フィルター（グレースケール、反転、ブラー、エッジ検出）
+  - `helpers.c` のみ実装 
   - [問題文](https://cs50.harvard.edu/x/2020/psets/4/filter/more/)
