@@ -10,6 +10,12 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
+            // [notice]
+            // 汎整数拡張 という仕組みで、BYTE 型同士の足し算をした結果が一時的にint 型に拡張されています。
+            // なので、内部的には
+            // (BYTE)255 + (BYTE)255 -> (int)(BYTE)255 + (int)(BYTE)255 -> (int)510
+            // と評価されます。
+            // 今回は関係していませんが、ビット演算や符号有り・無しを区別しているケースではビット長や型に注意。
             BYTE average = round((image[i][j].rgbtRed + image[i][j].rgbtGreen + image[i][j].rgbtBlue) / 3.0);
             image[i][j].rgbtRed = average;
             image[i][j].rgbtGreen = average;
@@ -55,6 +61,10 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
+    // [notice]
+    // ここはcopy 配列を使わずに記述できるでしょう。
+    // また、仮にcopy 配列を使う場合でも、要素を一つ一つ代入するよりは、
+    // memcpy などの関数を使う方が高速です。    
     RGBTRIPLE copy[height][width];
     for (int i = 0; i < height; i++)
     {
@@ -72,6 +82,16 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    // [notice]
+    // ここはメモリを確保して変換前・変換後のバッファが両方存在する必要があるので、
+    // copy 領域を確保するやり方でＯＫです。
+    // 高速なmemcpy を使いましょう。
+    // (おまけ)
+    // 画像処理の場合、4byte alignment に注意。
+    // OpenCV などの画像ライブラリでは、画像バッファの横方向のラインを確保する際に
+    // バッファのサイズが4の倍数になるように、バッファの後ろにダミーデータが詰められることもあります。
+    // (画像ライブラリでalignment の情報を取得出来たり、予め仕様で決まっていたりします。)
+    // ダミーデータが入っていると、memcpy の時のバッファサイズ計算が変わってくるので注意。
     RGBTRIPLE copy[height][width];
     for (int i = 0; i < height; i++)
     {
