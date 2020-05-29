@@ -10,7 +10,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            // [notice]
+            // [note]
             // 汎整数拡張 という仕組みで、BYTE 型同士の足し算をした結果が一時的にint 型に拡張されています。
             // なので、内部的には
             // (BYTE)255 + (BYTE)255 -> (int)(BYTE)255 + (int)(BYTE)255 -> (int)510
