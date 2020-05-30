@@ -59,3 +59,6 @@ Harvard大学のMOOC講座、 [CS50 2020](https://cs50.harvard.edu/x/2020/) の
   - 画像用フィルター（グレースケール、反転、ブラー、エッジ検出）
   - `helpers.c` のみ実装 
   - [問題文](https://cs50.harvard.edu/x/2020/psets/4/filter/more/)
+- [Recover](pset4/recover/recover.c)
+  - バイナリファイルからJPEG画像を復旧させるプログラム
+  - [問題文](https://cs50.harvard.edu/x/2020/psets/4/recover/)
