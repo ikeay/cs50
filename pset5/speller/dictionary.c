@@ -15,6 +15,17 @@ typedef struct node
 }
 node;
 
+// [notice]
+// これらの変数は、必然性がないのであればグローバル変数にしない方が良いです。
+// 代わりにファイルスタティック変数にしましょう。
+//
+// グローバル変数にすると他のソースファイルからも参照できてしまうので、
+// これらの変数が思わぬところで変更されてしまうリスクがあります。
+//
+// ファイルスタティック変数にしておけば、ファイル外からこれらの変数が見えなくなるので、
+// 変数へのアクセスをこのファイル内に留め、意図しない変数アクセスのリスクを排除できます。
+// N とかcount とかよく使いそうな名前の変数の場合は副作用がでやすいですし、
+// 特殊な変数名の場合は副作用が出にくいがゆえにより原因究明が困難なバグを引き起こす可能性があります。
 // Number of buckets in hash table
 const unsigned int N = 26;
 
@@ -46,6 +57,11 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
+    // [note]
+    // check50 を実行すると
+    // handles words with apostrophes properly
+    // というテストチェックメッセージが出てきます。
+    // 高速化を考慮する時に、このメッセージを思い出してください。
     int index = (char)tolower(word[0]) - 'a';
     return index;
 }
@@ -88,6 +104,9 @@ bool load(const char *dictionary)
 
         strcpy(item->word, buffer);
 
+        // [notice]
+        // インデックスを算出する機能はhash 関数で実装していますから、
+        // ここもhash 関数を呼び出すようにしましょう（そうしておくと後で高速化が楽になります）
         index = item->word[0] - 'a';
         item->next = table[index]->next;
         table[index]->next = item;
