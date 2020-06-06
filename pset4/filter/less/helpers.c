@@ -1,5 +1,6 @@
 #include <math.h>
 #include <stdlib.h>
+#include <memory.h>
 
 #include "helpers.h"
 
@@ -55,16 +56,13 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    RGBTRIPLE copy[height][width];
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 0; j < width / 2; j++)
         {
-            copy[i][j] = image[i][j];
-        }
-        for (int j = 0; j < width; j++)
-        {
-            image[i][j] = copy[i][width - 1 - j];
+            RGBTRIPLE pxa = image[i][j];
+            image[i][j] = image[i][width - 1 - j];
+            image[i][width - 1 - j] = pxa;
         }
     }
 }
@@ -73,13 +71,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE copy[height][width];
-    for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < width; j++)
-        {
-            copy[i][j] = image[i][j];
-        }
-    }
+    memcpy(copy, image, sizeof(RGBTRIPLE[height][width]));
 
     for (int i = 0; i < height; i++)
     {

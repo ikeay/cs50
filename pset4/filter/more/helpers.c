@@ -1,5 +1,6 @@
 #include <math.h>
 #include <stdlib.h>
+#include <memory.h>
 
 #include "helpers.h"
 
@@ -21,16 +22,13 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    RGBTRIPLE copy[height][width];
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 0; j < width / 2; j++)
         {
-            copy[i][j] = image[i][j];
-        }
-        for (int j = 0; j < width; j++)
-        {
-            image[i][j] = copy[i][width - 1 - j];
+            RGBTRIPLE pxa = image[i][j];
+            image[i][j] = image[i][width - 1 - j];
+            image[i][width - 1 - j] = pxa;
         }
     }
 }
@@ -39,13 +37,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE copy[height][width];
-    for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < width; j++)
-        {
-            copy[i][j] = image[i][j];
-        }
-    }
+    memcpy(copy, image, sizeof(RGBTRIPLE) * width * height);
 
     for (int i = 0; i < height; i++)
     {
@@ -91,18 +83,8 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
     int gx[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
     int gy[3][3] = {{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
 
-    for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < width; j++)
-        {
-            result_gx[i][j].red = 0;
-            result_gx[i][j].green = 0;
-            result_gx[i][j].blue = 0;
-            result_gy[i][j].red = 0;
-            result_gy[i][j].green = 0;
-            result_gy[i][j].blue = 0;
-        }
-    }
+    memset(result_gx, 0, sizeof(result_gx)); 
+    memset(result_gy, 0, sizeof(result_gy)); 
 
     for (int i = 0; i < height; i++)
     {
@@ -120,15 +102,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                         result_gy[i][j].red += gy[m][n] * image[k][l].rgbtRed;
                         result_gy[i][j].green += gy[m][n] * image[k][l].rgbtGreen;
                         result_gy[i][j].blue += gy[m][n] * image[k][l].rgbtBlue;
-                    }
-                    else
-                    {
-                        result_gx[i][j].red += 0;
-                        result_gx[i][j].green += 0;
-                        result_gx[i][j].blue += 0;
-                        result_gy[i][j].red += 0;
-                        result_gy[i][j].green += 0;
-                        result_gy[i][j].blue += 0;
                     }
                 }
             }
