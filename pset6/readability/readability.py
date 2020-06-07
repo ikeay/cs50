@@ -7,7 +7,7 @@ def is_sentence_end(c):
     return c is "." or c is "!" or c is "?"
 
 def is_letter(c):
-    return c.isalpha() or c.isdigit()
+    return c.isalpha()
 
 def coleman_liau_index(letter_count, word_count, sentence_count):
     l = 100 * letter_count / word_count
@@ -41,4 +41,3 @@ elif index > 16:
     print("Grade 16+")
 else:
     print(("Grade {}").format(index))
-
