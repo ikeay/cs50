@@ -70,3 +70,31 @@ Harvard大学のMOOC講座、 [CS50 2020](https://cs50.harvard.edu/x/2020/) の
   - このプログラムでは、A-Zで分割された線形リストを利用しているが、最終的にはここからさらにスピードチューニングしたプログラムにすることが推奨されている。
   - `dictionary.c` のみの実装
   - [問題文](https://cs50.harvard.edu/x/2020/psets/5/speller/)
+
+## Week6
+使用言語: Python
+- [Hello](pset6/hello/hello.py)
+  - 「Ayaka」と名前を入力すると、「Hello, Ayaka」と出力するプログラム
+  - WEEK1でC言語でも同じアルゴリズムのプログラムを書いている。
+  - [問題文](https://cs50.harvard.edu/x/2020/psets/6/hello/)
+- Mario [Less](pset6/mario/less/mario.py)/[More](pset6/mario/more/mario.py)
+  - WEEK1でC言語でも同じアルゴリズムのプログラムを書いている。
+  - 高さを入力すると階段状のブロックを出力するプログラム
+    - [問題文](https://cs50.harvard.edu/x/2020/psets/6/mario/less/)
+  - 上記の階段状のブロックを線対称にふたつ出力するプログラム
+    - [問題文](https://cs50.harvard.edu/x/2020/psets/6/mario/more/)
+- [Cash](pset6/cash/cash.py)
+  - 金額を入力すると、お釣りのコインの枚数を出力するプログラム
+  - WEEK1でC言語でも同じアルゴリズムのプログラムを書いている。
+  - [問題文](https://cs50.harvard.edu/x/2020/psets/6/cash/)
+- [Credit](pset6/credit/credit.py)
+  - Luhnアルゴリズムというクレジット番号の認証に用いるアルゴリズムを用いて、このクレジット番号が正しいか、およびカードブランドを出力するプログラム
+  - WEEK1でC言語でも同じアルゴリズムのプログラムを書いている。
+  - [問題文](https://cs50.harvard.edu/x/2020/psets/6/credit/)
+- [Readability](pset6/readability/readability.py)
+  - Coleman-Liau indexという式を用いて、100ワードあたりの文字数、文数から文章のリーダビリティを測るプログラム
+  - WEEK2でC言語でも同じアルゴリズムのプログラムを書いている。
+  - [問題文](https://cs50.harvard.edu/x/2020/psets/6/readability/)
+- [DNA](pset6/dna/dna.py)
+  - DNAの配列のパターンが連続している部分（STR）を参照してCSVファイル上の人物と一致するかを判定するプログラム
+  - [問題文](https://cs50.harvard.edu/x/2020/psets/6/dna/)
