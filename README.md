@@ -98,3 +98,12 @@ Harvard大学のMOOC講座、 [CS50 2020](https://cs50.harvard.edu/x/2020/) の
 - [DNA](pset6/dna/dna.py)
   - DNAの配列のパターンが連続している部分（STR）を参照してCSVファイル上の人物と一致するかを判定するプログラム
   - [問題文](https://cs50.harvard.edu/x/2020/psets/6/dna/)
+
+## WEEK7
+使用言語: SQL, Python
+- [Movies](pset7/movies)
+  - データベースから問題文の条件と合致するデータを引っ張るSQL文
+  - [問題文](https://cs50.harvard.edu/x/2020/psets/7/movies/)
+- [House](pset7/houses)
+  - ホグワーツ魔法学校の名簿リストをデータベースに保存したり、出力したりするPythonプログラム
+  - [問題文](https://cs50.harvard.edu/x/2020/psets/7/houses/)
