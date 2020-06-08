@@ -15,14 +15,13 @@ typedef struct node
 }
 node;
 
-// Number of buckets in hash table
-const unsigned int N = 26;
+static const unsigned int N = 26;
 
 // Hash table
-node *table[N];
+static node *table[N];
 
 // Node for pointing position in hash table
-node *cursor;
+static node *cursor;
 
 int count = 0;
 
@@ -88,7 +87,7 @@ bool load(const char *dictionary)
 
         strcpy(item->word, buffer);
 
-        index = item->word[0] - 'a';
+        index = hash(item->word);
         item->next = table[index]->next;
         table[index]->next = item;
         count++;
