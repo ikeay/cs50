@@ -26,6 +26,9 @@ except (OSError, PermissionError, FileNotFoundError) as e:
     print(e)
     sys.exit(1)
 
+# [notice]
+# ここはこのやり方でも正しく答えを出せていますが、count[i] をリストにしなくてもいけると思います。
+# （リスト化することでメモリをかなり浪費しているのが気になります。）
 # Create a hash table for counting repeats
 count = {}
 for i in ref[0][1::]:
