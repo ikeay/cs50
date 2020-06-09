@@ -26,33 +26,27 @@ except (OSError, PermissionError, FileNotFoundError) as e:
     print(e)
     sys.exit(1)
 
-# [notice]
-# ここはこのやり方でも正しく答えを出せていますが、count[i] をリストにしなくてもいけると思います。
-# （リスト化することでメモリをかなり浪費しているのが気になります。）
-# Create a hash table for counting repeats
-count = {}
-for i in ref[0][1::]:
-    count[i] = [0]
+count = {k:0 for k in ref[0][1::]}
 
-# Count a number of STRs
 for key in count.keys():
-    key_length = len(key)
-    start_count = 0
-    for i in range(0, contents_length):
+    local_count = 0
+    i = 0
+    while i < contents_length:
+        step = 1
+        flag = False
+        key_length = len(key)
         seq_end = i + key_length
-        if seq_end >= contents_length:
-            break
-        elif key == contents[i:seq_end]:
-            count[key][-1] += 1
-            start_count = 1
-        elif 0 < start_count < key_length:
-            start_count += 1
+        if seq_end < contents_length and key == contents[i:seq_end]:
+            local_count += 1
+            step = key_length
         else:
-            start_count = 0
-            count[key].append(0)
+            if local_count > count[key]:
+                count[key] = local_count
+            local_count = 0
+        i += step
 
 # STR
-max_count = [str(max(v)) for _, v in count.items()]
+max_count = [str(v) for _, v in count.items()]
 
 # Identify whose DNA it is
 for r in ref[1::]:
