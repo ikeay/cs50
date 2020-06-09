@@ -1,6 +1,8 @@
 import sys
 from cs50 import SQL
 
+# [notice]
+# 前述の指摘と同様、整数値に対するis の使い方が気になります。
 
 def is_house_name(house):
     return house.isalpha()
