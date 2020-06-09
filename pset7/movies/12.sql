@@ -13,6 +13,6 @@ LEFT OUTER JOIN stars
 ON movies.id = stars.movie_id
 INNER JOIN people
 ON people.id = stars.person_id
-WHERE name = "Johnny Depp" OR name = "Helena Bonham Carter" -- [note] 折角他は丁寧に書いてるので(以下略)
+WHERE name = "Johnny Depp" OR name = "Helena Bonham Carter"
 GROUP BY title
 HAVING COUNT(title) = 2;
