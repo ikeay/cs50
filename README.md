@@ -107,3 +107,9 @@ Harvard大学のMOOC講座、 [CS50 2020](https://cs50.harvard.edu/x/2020/) の
 - [House](pset7/houses)
   - ホグワーツ魔法学校の名簿リストをデータベースに保存したり、出力したりするPythonプログラム
   - [問題文](https://cs50.harvard.edu/x/2020/psets/7/houses/)
+
+## WEEK8
+使用言語: HTML/CSS, Python
+- [Finance](pset8/finance)
+  - 株の売り買いをシミュレーションするFlaskアプリケーション
+  - [問題文](https://cs50.harvard.edu/x/2020/tracks/web/finance/)
