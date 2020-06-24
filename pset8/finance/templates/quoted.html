@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+    {% if info %}
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    {% for k in info.keys() %}
+                    <th scope="col">{{k.capitalize()}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for v in info.values() %}
+                    <td>{{v}}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="row">No data</div>
+    {% endif %}
+{% endblock %}

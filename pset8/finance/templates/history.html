@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    {% if histories %}
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    {% for k in histories[0].keys() %}
+                    <th scope="col">{{k.capitalize()}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for history in histories %}
+                <tr>
+                    {% for v in history.values() %}
+                    <td>{{v}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="row">No data</div>
+    {% endif %}
+{% endblock %}
