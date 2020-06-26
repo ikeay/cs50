@@ -115,7 +115,7 @@ Harvard大学のMOOC講座、 [CS50 2020](https://cs50.harvard.edu/x/2020/) の
   - ちょうど個人のWebサイトをリニューアルしなきゃと思っていたので、それを作って提出した。
   - 本当は4ページ作ってリンクする条件も入っていたけど、載せるコンテンツがなかったので、このまま提出した。
   - https://ikeay.net
-  -[問題文](https://cs50.harvard.edu/x/2020/tracks/web/homepage/)
+  - [問題文](https://cs50.harvard.edu/x/2020/tracks/web/homepage/)
 - [Finance](pset8/finance)
   - 株の売り買いをシミュレーションするFlaskアプリケーション
   - [問題文](https://cs50.harvard.edu/x/2020/tracks/web/finance/)
