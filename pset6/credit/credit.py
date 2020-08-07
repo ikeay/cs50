@@ -1,6 +1,5 @@
 from cs50 import get_int
 
-
 def list_number(number):
     array = []
     while True:
@@ -12,21 +11,21 @@ def list_number(number):
 
 
 def is_amex(list_number):
-    if list_number[0] is 3:
-        if list_number[1] is 4 or list_number[1] is 7:
+    if list_number[0] == 3:
+        if list_number[1] == 4 or list_number[1] == 7:
             return True
     return False
 
 
 def is_master(list_number):
-    if list_number[0] is 5:
+    if list_number[0] == 5:
         if list_number[0] <= 5:
             return True
     return False
 
 
 def is_visa(list_number):
-    if list_number[0] is 4:
+    if list_number[0] == 4:
         return True
     return False
 
@@ -50,7 +49,7 @@ while True:
     for i in reverse_numbers[0::2]:
         sum += i
 
-    if sum % 10 is 0:
+    if sum % 10 == 0:
         if is_amex(numbers):
             print("AMEX")
         elif is_master(numbers):

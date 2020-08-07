@@ -1,14 +1,13 @@
 import sys
 from cs50 import SQL
 
-
 def is_house_name(house):
     return house.isalpha()
 
 
 def main():
     try:
-        if not len(sys.argv) is 2:
+        if not len(sys.argv) == 2:
             print("Usage: python roster.py csv_file", file=sys.stderr)
             sys.exit(1)
 

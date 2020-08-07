@@ -1,3 +1,12 @@
+/*
+[note]
+LEFT OUTER JOIN stars
+
+のところを外部結合にしたのはどういう意図でしょう？
+INNER JOIN stars
+
+で十分かと思いました。
+*/
 SELECT title
 FROM movies
 LEFT OUTER JOIN stars
